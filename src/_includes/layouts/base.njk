@@ -1,12 +1,12 @@
 <!doctype html>
 {# ui language is determined by url prefix: /tr/... #}
-{% set inTR = (page.url | slice(0,4)) == "/tr/" %}
+{% set inTR = page.url and page.url.startsWith("/tr/") %}
 {% set ui = inTR ? "tr" : "en" %}
 {% set t = i18n[ui] %}
 {% set prefix = inTR ? "/tr" : "" %}
 
 {# poem pages live only under /texts/... (no /tr version), so toggle goes to the list #}
-{% set isPoemPage = (page.url | slice(0,7)) == "/texts/" and page.url != "/texts/" %}
+{% set isPoemPage = page.url and page.url.startsWith("/texts/") and page.url != "/texts/" %}
 
 {% if inTR %}
   {# switching to english #}
