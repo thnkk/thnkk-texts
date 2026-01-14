@@ -1,0 +1,16 @@
+---
+layout: layouts/page.njk
+title: yazılar
+permalink: /tr/texts/
+---
+
+<ul class="texts-list">
+  {% for item in collections.texts %}
+    <li>
+      <div class="text-row">
+        <a href="{{ item.url }}">{{ item.data.title }}</a>
+        <span class="text-date">{{ item.date | isoDate }}</span>
+      </div>
+    </li>
+  {% endfor %}
+</ul>
