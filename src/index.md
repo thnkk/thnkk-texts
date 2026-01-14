@@ -25,5 +25,5 @@ permalink: /
 </section>
 
 <footer class="home-footer">
-  thanks
+  
 </footer>
