@@ -1,0 +1,116 @@
+:root {
+  --maxw: 760px;
+  --pad: 22px;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-header, .site-footer {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: var(--pad);
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.site-title {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.site-nav {
+  display: flex;
+  gap: 14px;
+  font-size: 0.95rem;
+}
+
+.site-main {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--pad) var(--pad) var(--pad);
+}
+
+.page h1, .poem-title {
+  font-size: 2rem;
+  margin: 1.4rem 0 0.6rem 0;
+}
+
+.poem-meta {
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.poem-body {
+  font-size: 1.08rem;
+}
+
+/* Poetry-friendly spacing: keep paragraphs tight, preserve line breaks via markdown-it 'breaks: true' */
+.poem-body p {
+  margin: 0 0 1rem 0;
+}
+
+.texts-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.texts-list li {
+  padding: 0.9rem 0;
+  border-top: 1px solid rgba(0,0,0,0.12);
+}
+
+.texts-list li:first-child {
+  border-top: 0;
+}
+
+.text-row {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.text-date {
+  opacity: 0.6;
+  font-size: 0.95rem;
+  flex: 0 0 auto;
+}
+
+.site-footer {
+  font-size: 0.95rem;
+  opacity: 0.75;
+}
+
+.sep {
+  opacity: 0.5;
+}
+
+@media (max-width: 560px) {
+  .site-header, .site-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .text-row {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
+}

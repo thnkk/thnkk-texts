@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ title or site.title }}</title>
+    <meta name="description" content="{{ description or site.tagline }}" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="site-title" href="/">{{ site.title }}</a>
+      <nav class="site-nav">
+        <a href="/texts/">Texts</a>
+        <a href="/start-here/">Start here</a>
+        <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">Bandcamp</a>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <span>© {{ site.author }}</span>
+      <span class="sep">·</span>
+      <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">music</a>
+    </footer>
+  </body>
+</html>

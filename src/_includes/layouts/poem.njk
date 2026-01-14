@@ -1,0 +1,15 @@
+---
+layout: layouts/base.njk
+---
+<article class="poem">
+  <header class="poem-header">
+    <h1 class="poem-title">{{ title }}</h1>
+    {% if date %}
+      <div class="poem-meta">{{ date | readableDate }}</div>
+    {% endif %}
+  </header>
+
+  <div class="poem-body">
+    {{ content | safe }}
+  </div>
+</article>

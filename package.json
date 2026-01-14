@@ -1,0 +1,15 @@
+{
+  "name": "thnkk-text-archive",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "dev": "eleventy --serve --watch"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "luxon": "^3.5.0",
+    "markdown-it": "^14.1.0"
+  }
+}
