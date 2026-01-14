@@ -1,34 +1,42 @@
 <!doctype html>
-{% set inTR = (page.url | slice(0,4)) == "/tr/" %}
+{% set url = page.url or "/" %}
+{% set inTR = url.startsWith("/tr/") %}
 
 {% if inTR %}
-  {% set nav_home = "arşiv" %}
-  {% set nav_texts = "yazılar" %}
-  {% set nav_about = "hakkında" %}
-  {% set nav_sounds = "sesler" %}
-  {% set nav_lang = "en" %}
+  {% set lang = "tr" %}
   {% set home_href = "/tr/" %}
   {% set texts_href = "/tr/texts/" %}
   {% set about_href = "/tr/hakkinda/" %}
+
+  {% set nav_texts = "yazılar" %}
+  {% set nav_sounds = "sesler" %}
+  {% set nav_about = "hakkında" %}
+  {% set nav_contact = "ne diyorsun?" %}
+  {% set nav_lang = "en" %}
+
+  {% set footer_thanks = "teşekkürler" %}
 {% else %}
-  {% set nav_home = "archive" %}
-  {% set nav_texts = "texts" %}
-  {% set nav_about = "about" %}
-  {% set nav_sounds = "sounds" %}
-  {% set nav_lang = "tr" %}
+  {% set lang = "en" %}
   {% set home_href = "/" %}
   {% set texts_href = "/texts/" %}
   {% set about_href = "/about/" %}
+
+  {% set nav_texts = "texts" %}
+  {% set nav_sounds = "sounds" %}
+  {% set nav_about = "about" %}
+  {% set nav_contact = "say something" %}
+  {% set nav_lang = "tr" %}
+
+  {% set footer_thanks = "thank you" %}
 {% endif %}
 
-{# language switch mapping #}
-{% set url = page.url %}
+{# language switch (poem pages exist only under /texts/, so tr goes to /tr/texts/) #}
 {% if inTR %}
   {% if url == "/tr/" %}
     {% set switchUrl = "/" %}
-  {% elseif url == "/tr/texts/" %}
+  {% elif url == "/tr/texts/" %}
     {% set switchUrl = "/texts/" %}
-  {% elseif url == "/tr/hakkinda/" %}
+  {% elif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
   {% else %}
     {% set switchUrl = "/" %}
@@ -36,19 +44,18 @@
 {% else %}
   {% if url == "/" %}
     {% set switchUrl = "/tr/" %}
-  {% elseif url == "/texts/" %}
+  {% elif url == "/texts/" %}
     {% set switchUrl = "/tr/texts/" %}
-  {% elseif (url | slice(0,7)) == "/texts/" %}
-    {# poem page: no tr version, so send to tr texts list #}
+  {% elif url.startsWith("/texts/") %}
     {% set switchUrl = "/tr/texts/" %}
-  {% elseif url == "/about/" %}
+  {% elif url == "/about/" %}
     {% set switchUrl = "/tr/hakkinda/" %}
   {% else %}
     {% set switchUrl = "/tr/" %}
   {% endif %}
 {% endif %}
 
-<html lang="{{ inTR ? 'tr' : 'en' }}">
+<html lang="{{ lang }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -58,18 +65,23 @@
   </head>
   <body>
     <header class="site-header">
+      <a class="site-title" href="{{ home_href }}">{{ site.title }}</a>
       <nav class="site-nav">
-        <a href="{{ home_href }}">{{ nav_home }}</a>
         <a href="{{ texts_href }}">{{ nav_texts }}</a>
-        <a href="{{ about_href }}">{{ nav_about }}</a>
         <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ nav_sounds }}</a>
-        <a class="lang" href="{{ switchUrl }}">{{ nav_lang }}</a>
+        <a href="{{ about_href }}">{{ nav_about }}</a>
+        <a href="mailto:{{ site.email }}">{{ nav_contact }}</a>
+        <a href="{{ switchUrl }}">{{ nav_lang }}</a>
       </nav>
     </header>
 
     <main class="site-main">
       {{ content | safe }}
     </main>
+
+    <footer class="site-footer">
+      <span>{{ footer_thanks }}</span>
+    </footer>
   </body>
 </html>
 
