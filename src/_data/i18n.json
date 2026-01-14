@@ -1,0 +1,18 @@
+{
+  "en": {
+    "nav_texts": "texts",
+    "nav_start": "start here",
+    "nav_about": "about",
+    "nav_bandcamp": "sounds",
+    "nav_lang": "tr",
+    "footer_music": "sounds"
+  },
+  "tr": {
+    "nav_texts": "yazılar",
+    "nav_start": "başlangıç",
+    "nav_about": "hakkında",
+    "nav_bandcamp": "sesler",
+    "nav_lang": "en",
+    "footer_music": "sesler"
+  }
+}
