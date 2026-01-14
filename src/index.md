@@ -1,12 +1,29 @@
 ---
-layout: layouts/page.njk
-title: THNKK — Text archive
-description: Notes, poems, fragments.
+layout: layouts/base.njk
+title: archive
 permalink: /
 ---
 
-This is a **small, non-feed** place for text.
+<section class="home-hero">
+  <h1>archive</h1>
+  <p>i’m writing down the effort i spend trying to keep it in my head</p>
+</section>
 
-- If you want an entry point: go to **[Start here](/start-here/)**.
-- If you want the catalog: go to **[Texts](/texts/)**.
-- Music stays on **[Bandcamp]({{ site.bandcamp_url }})**.
+<section class="home-hello">
+  <h2>hello!</h2>
+  <p>i produce sounds and texts</p>
+</section>
+
+<section class="home-buttons">
+  <a class="btn" href="/texts/">texts</a>
+  <a class="btn" href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">sounds</a>
+</section>
+
+<section class="home-buttons">
+  <a class="btn" href="/about/">about</a>
+  <a class="btn" href="mailto:{{ site.email }}">what do you think?</a>
+</section>
+
+<footer class="home-footer">
+  thanks
+</footer>
