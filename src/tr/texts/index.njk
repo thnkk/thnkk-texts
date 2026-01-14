@@ -1,12 +1,20 @@
 ---
-layout: page.njk
+layout: layouts/page.njk
 title: yazılar
-permalink: /tr/texts/
-eleventyExcludeFromCollections: true
 ---
-
-<p><a href="/tr/texts/">yazılar</a></p>
 
 <ul>
   <li><a href="/tr/texts/etimdeki-plastikler/">etimdeki plastikler</a></li>
 </ul>
+
+{# optional: old fragments list #}
+{# 
+{% if collections.texts and collections.texts.length %}
+  <hr />
+  <ul>
+    {% for post in collections.texts | reverse %}
+      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endif %}
+#}
