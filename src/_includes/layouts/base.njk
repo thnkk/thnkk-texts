@@ -1,36 +1,54 @@
 <!doctype html>
-{# ui language is determined by url prefix: /tr/... #}
-{% set inTR = page.url and page.url.startsWith("/tr/") %}
-{% set ui = inTR ? "tr" : "en" %}
-{% set t = i18n[ui] %}
-{% set prefix = inTR ? "/tr" : "" %}
-
-{# poem pages live only under /texts/... (no /tr version), so toggle goes to the list #}
-{% set isPoemPage = page.url and page.url.startsWith("/texts/") and page.url != "/texts/" %}
+{% set inTR = (page.url | slice(0,4)) == "/tr/" %}
 
 {% if inTR %}
-  {# switching to english #}
-  {% if page.url == "/tr/" %}
+  {% set nav_home = "arşiv" %}
+  {% set nav_texts = "yazılar" %}
+  {% set nav_about = "hakkında" %}
+  {% set nav_sounds = "sesler" %}
+  {% set nav_lang = "en" %}
+  {% set home_href = "/tr/" %}
+  {% set texts_href = "/tr/texts/" %}
+  {% set about_href = "/tr/hakkinda/" %}
+{% else %}
+  {% set nav_home = "archive" %}
+  {% set nav_texts = "texts" %}
+  {% set nav_about = "about" %}
+  {% set nav_sounds = "sounds" %}
+  {% set nav_lang = "tr" %}
+  {% set home_href = "/" %}
+  {% set texts_href = "/texts/" %}
+  {% set about_href = "/about/" %}
+{% endif %}
+
+{# language switch mapping #}
+{% set url = page.url %}
+{% if inTR %}
+  {% if url == "/tr/" %}
     {% set switchUrl = "/" %}
-  {% elseif page.url == "/tr/start-here/" %}
-    {% set switchUrl = "/start-here/" %}
-  {% elseif page.url == "/tr/texts/" %}
+  {% elseif url == "/tr/texts/" %}
     {% set switchUrl = "/texts/" %}
-  {% elseif page.url == "/tr/hakkinda/" %}
+  {% elseif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
   {% else %}
     {% set switchUrl = "/" %}
   {% endif %}
 {% else %}
-  {# switching to turkish #}
-  {% if isPoemPage %}
+  {% if url == "/" %}
+    {% set switchUrl = "/tr/" %}
+  {% elseif url == "/texts/" %}
     {% set switchUrl = "/tr/texts/" %}
+  {% elseif (url | slice(0,7)) == "/texts/" %}
+    {# poem page: no tr version, so send to tr texts list #}
+    {% set switchUrl = "/tr/texts/" %}
+  {% elseif url == "/about/" %}
+    {% set switchUrl = "/tr/hakkinda/" %}
   {% else %}
-    {% set switchUrl = "/tr" + page.url %}
+    {% set switchUrl = "/tr/" %}
   {% endif %}
 {% endif %}
 
-<html lang="{{ lang or ui }}">
+<html lang="{{ inTR ? 'tr' : 'en' }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -40,24 +58,18 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="site-title" href="{{ prefix }}/">{{ site.title }}</a>
       <nav class="site-nav">
-        <a href="{{ prefix }}/texts/">{{ t.nav_texts }}</a>
-        <a href="{{ prefix }}/start-here/">{{ t.nav_start }}</a>
-        <a href="{{ prefix }}{% if inTR %}/hakkinda/{% else %}/about/{% endif %}">{{ t.nav_about }}</a>
-        <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ t.nav_bandcamp }}</a>
-        <a href="{{ switchUrl }}">{{ t.nav_lang }}</a>
+        <a href="{{ home_href }}">{{ nav_home }}</a>
+        <a href="{{ texts_href }}">{{ nav_texts }}</a>
+        <a href="{{ about_href }}">{{ nav_about }}</a>
+        <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ nav_sounds }}</a>
+        <a class="lang" href="{{ switchUrl }}">{{ nav_lang }}</a>
       </nav>
     </header>
 
     <main class="site-main">
       {{ content | safe }}
     </main>
-
-    <footer class="site-footer">
-      <span>© {{ site.author }}</span>
-      <span class="sep">·</span>
-      <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ t.footer_music }}</a>
-    </footer>
   </body>
 </html>
+
