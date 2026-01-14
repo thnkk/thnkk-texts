@@ -1,22 +1,25 @@
-const markdownIt = require("markdown-it");
-const { DateTime } = require("luxon");
+import markdownIt from "markdown-it";
+import { DateTime } from "luxon";
 
-module.exports = function (eleventyConfig) {
+export default function (eleventyConfig) {
+  // Keep poem line breaks: single newlines become <br>
   const md = markdownIt({ html: true, breaks: true, linkify: true });
   eleventyConfig.setLibrary("md", md);
 
+  // Static assets
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
   eleventyConfig.addPassthroughCopy({ "src/robots.txt": "robots.txt" });
 
-  eleventyConfig.addFilter("isoDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toISODate();
-  });
+  // Date filters
+  eleventyConfig.addFilter("isoDate", (dateObj) =>
+    DateTime.fromJSDate(dateObj, { zone: "utc" }).toISODate()
+  );
+  eleventyConfig.addFilter("readableDate", (dateObj) =>
+    DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy")
+  );
 
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("dd LLL yyyy");
-  });
-
+  // Collection
   eleventyConfig.addCollection("texts", (collectionApi) => {
     return collectionApi
       .getFilteredByGlob("src/texts/*.md")
@@ -34,4 +37,4 @@ module.exports = function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     templateFormats: ["md", "njk", "html"],
   };
-};
+}
