@@ -1,5 +1,36 @@
 <!doctype html>
-<html lang="en">
+{# ui language is determined by url prefix: /tr/... #}
+{% set inTR = (page.url | slice(0,4)) == "/tr/" %}
+{% set ui = inTR ? "tr" : "en" %}
+{% set t = i18n[ui] %}
+{% set prefix = inTR ? "/tr" : "" %}
+
+{# poem pages live only under /texts/... (no /tr version), so toggle goes to the list #}
+{% set isPoemPage = (page.url | slice(0,7)) == "/texts/" and page.url != "/texts/" %}
+
+{% if inTR %}
+  {# switching to english #}
+  {% if page.url == "/tr/" %}
+    {% set switchUrl = "/" %}
+  {% elseif page.url == "/tr/start-here/" %}
+    {% set switchUrl = "/start-here/" %}
+  {% elseif page.url == "/tr/texts/" %}
+    {% set switchUrl = "/texts/" %}
+  {% elseif page.url == "/tr/hakkinda/" %}
+    {% set switchUrl = "/about/" %}
+  {% else %}
+    {% set switchUrl = "/" %}
+  {% endif %}
+{% else %}
+  {# switching to turkish #}
+  {% if isPoemPage %}
+    {% set switchUrl = "/tr/texts/" %}
+  {% else %}
+    {% set switchUrl = "/tr" + page.url %}
+  {% endif %}
+{% endif %}
+
+<html lang="{{ lang or ui }}">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,11 +40,13 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="site-title" href="/">{{ site.title }}</a>
+      <a class="site-title" href="{{ prefix }}/">{{ site.title }}</a>
       <nav class="site-nav">
-        <a href="/texts/">Texts</a>
-        <a href="/start-here/">Start here</a>
-        <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">Bandcamp</a>
+        <a href="{{ prefix }}/texts/">{{ t.nav_texts }}</a>
+        <a href="{{ prefix }}/start-here/">{{ t.nav_start }}</a>
+        <a href="{{ prefix }}{% if inTR %}/hakkinda/{% else %}/about/{% endif %}">{{ t.nav_about }}</a>
+        <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ t.nav_bandcamp }}</a>
+        <a href="{{ switchUrl }}">{{ t.nav_lang }}</a>
       </nav>
     </header>
 
@@ -24,7 +57,7 @@
     <footer class="site-footer">
       <span>© {{ site.author }}</span>
       <span class="sep">·</span>
-      <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">music</a>
+      <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ t.footer_music }}</a>
     </footer>
   </body>
 </html>
