@@ -25,5 +25,5 @@ permalink: /tr/
 </section>
 
 <footer class="home-footer">
-  teşekkürler
+  
 </footer>
