@@ -1,0 +1,17 @@
+---
+layout: page.njk
+title: mikroplastikler
+permalink: /tr/texts/etimdeki-plastikler/mikroplastikler/
+eleventyExcludeFromCollections: true
+---
+
+<p><a href="/tr/texts/">yazılar</a> / <a href="/tr/texts/etimdeki-plastikler/">etimdeki plastikler</a> / mikroplastikler</p>
+<p>1. bölüm - kısalar</p>
+
+<ul>
+{% for post in (collections.microplastics | reverse) %}
+  {% if "plastics-in-my-flesh" in post.data.tags %}
+    <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
