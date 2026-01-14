@@ -1,16 +1,12 @@
 ---
-layout: layouts/page.njk
+layout: page.njk
 title: texts
 permalink: /texts/
+eleventyExcludeFromCollections: true
 ---
 
-<ul class="texts-list">
-  {% for item in collections.texts %}
-    <li>
-      <div class="text-row">
-        <a href="{{ item.url }}">{{ item.data.title }}</a>
-        <span class="text-date">{{ item.date | isoDate }}</span>
-      </div>
-    </li>
-  {% endfor %}
+<p><a href="/texts/">texts</a></p>
+
+<ul>
+  <li><a href="/texts/plastics-in-my-flesh/">plastics in my flesh</a></li>
 </ul>
