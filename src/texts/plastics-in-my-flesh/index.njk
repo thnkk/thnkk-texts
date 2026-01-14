@@ -1,0 +1,34 @@
+---
+layout: page.njk
+title: plastics in my flesh
+permalink: /texts/plastics-in-my-flesh/
+eleventyExcludeFromCollections: true
+---
+
+<p><a href="/texts/">texts</a> / plastics in my flesh</p>
+
+<p>
+  <a href="/texts/plastics-in-my-flesh/microplastics/">microplastics</a>
+  ·
+  <a href="/texts/plastics-in-my-flesh/macroplastics/">macroplastics</a>
+</p>
+
+<h2>microplastics</h2>
+<p>chapter 1 - shorts</p>
+<ul>
+{% for post in (collections.microplastics | reverse) %}
+  {% if "plastics-in-my-flesh" in post.data.tags %}
+    <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
+
+<h2>macroplastics</h2>
+<p>chapter 2 - not so shorts</p>
+<ul>
+{% for post in (collections.macroplastics | reverse) %}
+  {% if "plastics-in-my-flesh" in post.data.tags %}
+    <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+  {% endif %}
+{% endfor %}
+</ul>
