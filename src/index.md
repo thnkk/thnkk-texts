@@ -19,10 +19,6 @@ permalink: /
   <a class="btn" href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">sounds</a>
 </section>
 
-<section class="home-buttons">
-  <a class="btn" href="/about/">about</a>
-  <a class="btn" href="mailto:{{ site.email }}">what do you say?</a>
-</section>
 
 <footer class="home-footer">
   
