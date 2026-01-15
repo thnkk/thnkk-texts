@@ -64,6 +64,24 @@ a {
 /* Poetry-friendly spacing: keep paragraphs tight, preserve line breaks via markdown-it 'breaks: true' */
 .poem-body p {
   margin: 0 0 1rem 0;
+  
+}
+.poem-body {
+  line-height: 1.9;
+}
+
+/* each stanza becomes a <p> */
+.poem-body p {
+  margin: 0 0 1.6rem 0; /* stanza gap */
+}
+
+.poem-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* the lines inside a stanza become <br> */
+.poem-body br {
+  content: "";
 }
 
 .texts-list {
