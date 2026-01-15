@@ -1,18 +1,10 @@
 ---
-layout: page.njk
+layout: layouts/page.njk
 title: macroplastics
-permalink: /texts/plastics-in-my-flesh/macroplastics/
-tags: []
-eleventyExcludeFromCollections: true
 ---
 
-<p><a href="/texts/">texts</a> / <a href="/texts/plastics-in-my-flesh/">plastics in my flesh</a> / macroplastics</p>
-<p>chapter 2 - not so shorts</p>
-
 <ul>
-{% for post in (collections.macroplastics | reverse) %}
-  {% if "plastics-in-my-flesh" in post.data.tags %}
-    <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-  {% endif %}
-{% endfor %}
+  {% for post in collections.macroplastics | reverse %}
+    <li><a href="{{ post.url }}">{{ post.data.title }}</a> <span class="date">{{ post.date | isoDate }}</span></li>
+  {% endfor %}
 </ul>
