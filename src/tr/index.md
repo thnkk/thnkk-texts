@@ -11,7 +11,7 @@ permalink: /tr/
 
 <section class="home-hello">
   <h2>merhaba!</h2>
-  <p>sesler ve yazılar türetiyorum</p>
+  <p>yazılar ve sesler türetiyorum</p>
 </section>
 
 <section class="home-buttons">
