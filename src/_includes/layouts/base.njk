@@ -30,6 +30,12 @@
   {% set footer_thanks = "thank you!" %}
 {% endif %}
 
+{% if inTR %}
+  {% set contact_href = "/tr/ne-diyorsun/" %}
+{% else %}
+  {% set contact_href = "/contact/" %}
+{% endif %}
+
 {# language switch #}
 {% if inTR %}
 
@@ -99,7 +105,7 @@
         <a href="{{ texts_href }}">{{ nav_texts }}</a>
         <a href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">{{ nav_sounds }}</a>
         <a href="{{ about_href }}">{{ nav_about }}</a>
-        <a href="mailto:{{ site.email }}">{{ nav_contact }}</a>
+        <a href="{{ contact_href }}">{{ nav_contact }}</a>
         <a href="{{ switchUrl }}">{{ nav_lang }}</a>
       </nav>
     </header>
