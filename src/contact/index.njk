@@ -1,0 +1,26 @@
+---
+layout: layouts/page.njk
+title: what do you say?
+---
+
+<form data-contact-form class="contact-form">
+  <label>
+    name *
+    <input name="name" required />
+  </label>
+
+  <label>
+    e-mail *
+    <input name="email" type="email" required />
+  </label>
+
+  <label>
+    message *
+    <textarea name="message" rows="6" required></textarea>
+  </label>
+
+  <button type="submit">send</button>
+  <p data-contact-status></p>
+</form>
+
+<script src="/js/contact.js"></script>
