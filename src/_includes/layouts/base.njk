@@ -43,13 +43,17 @@
   {% elif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
 
-  {# TR plastics book + chapters -> EN equivalents (keeps any deeper path too) #}
+  {# TR plastics book + chapters (+ any deeper path) -> EN equivalents #}
   {% elif url.startsWith("/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
-    {% set switchUrl = url | replace("/tr/texts/etimdeki-plastikler/mikroplastikler/", "/texts/plastics-in-my-flesh/microplastics/") %}
+    {% set switchUrl = "/texts/plastics-in-my-flesh/microplastics/" %}
   {% elif url.startsWith("/tr/texts/etimdeki-plastikler/makroplastikler/") %}
-    {% set switchUrl = url | replace("/tr/texts/etimdeki-plastikler/makroplastikler/", "/texts/plastics-in-my-flesh/macroplastics/") %}
+    {% set switchUrl = "/texts/plastics-in-my-flesh/macroplastics/" %}
   {% elif url.startsWith("/tr/texts/etimdeki-plastikler/") %}
-    {% set switchUrl = url | replace("/tr/texts/etimdeki-plastikler/", "/texts/plastics-in-my-flesh/") %}
+    {% set switchUrl = "/texts/plastics-in-my-flesh/" %}
+
+  {# any other TR texts subpage -> EN texts #}
+  {% elif url.startsWith("/tr/texts/") %}
+    {% set switchUrl = "/texts/" %}
   {% endif %}
 
 {% else %}
@@ -64,16 +68,21 @@
   {% elif url == "/about/" %}
     {% set switchUrl = "/tr/hakkinda/" %}
 
-  {# EN plastics book + chapters -> TR equivalents (keeps any deeper path too) #}
+  {# EN plastics book + chapters + poem pages -> TR chapter index pages #}
   {% elif url.startsWith("/texts/plastics-in-my-flesh/microplastics/") %}
-    {% set switchUrl = url | replace("/texts/plastics-in-my-flesh/microplastics/", "/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
+    {% set switchUrl = "/tr/texts/etimdeki-plastikler/mikroplastikler/" %}
   {% elif url.startsWith("/texts/plastics-in-my-flesh/macroplastics/") %}
-    {% set switchUrl = url | replace("/texts/plastics-in-my-flesh/macroplastics/", "/tr/texts/etimdeki-plastikler/makroplastikler/") %}
+    {% set switchUrl = "/tr/texts/etimdeki-plastikler/makroplastikler/" %}
   {% elif url.startsWith("/texts/plastics-in-my-flesh/") %}
-    {% set switchUrl = url | replace("/texts/plastics-in-my-flesh/", "/tr/texts/etimdeki-plastikler/") %}
+    {% set switchUrl = "/tr/texts/etimdeki-plastikler/" %}
+
+  {# any other EN texts subpage -> TR texts #}
+  {% elif url.startsWith("/texts/") %}
+    {% set switchUrl = "/tr/texts/" %}
   {% endif %}
 
 {% endif %}
+
 
 <html lang="{{ lang }}">
   <head>
