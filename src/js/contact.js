@@ -1,36 +1,40 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.querySelector("[data-contact-form]");
-  const status = document.querySelector("[data-contact-status]");
+(() => {
+  const form = document.getElementById("contactForm");
   if (!form) return;
+
+  const statusEl = document.getElementById("contactStatus");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
-    status.textContent = "sending...";
 
+    const fd = new FormData(form);
     const payload = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      message: form.message.value.trim()
+      name: String(fd.get("name") || "").trim(),
+      email: String(fd.get("email") || "").trim(),
+      message: String(fd.get("message") || "").trim(),
     };
+
+    if (statusEl) statusEl.textContent = "sending…";
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
       });
 
-      const data = await res.json().catch(() => ({}));
+      const json = await res.json().catch(() => ({}));
 
-      if (!res.ok || !data.ok) {
-        status.textContent = "failed. try again.";
-        return;
+      if (res.ok && json.ok) {
+        form.reset();
+        if (statusEl) statusEl.textContent = "sent.";
+      } else {
+        if (statusEl) statusEl.textContent = "couldn’t send. try again.";
+        console.error("contact error:", json);
       }
-
-      status.textContent = "sent. thank you!";
-      form.reset();
-    } catch {
-      status.textContent = "failed. try again.";
+    } catch (err) {
+      if (statusEl) statusEl.textContent = "network error. try again.";
+      console.error(err);
     }
   });
-});
+})();
