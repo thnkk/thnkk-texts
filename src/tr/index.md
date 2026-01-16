@@ -19,10 +19,6 @@ permalink: /tr/
   <a class="btn" href="{{ site.bandcamp_url }}" target="_blank" rel="noopener">sesler</a>
 </section>
 
-<section class="home-buttons">
-  <a class="btn" href="/tr/hakkinda/">hakkında</a>
-  <a class="btn" href="mailto:{{ site.email }}">ne diyorsun?</a>
-</section>
 
 <footer class="home-footer">
   
