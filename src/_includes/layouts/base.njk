@@ -33,7 +33,7 @@
 {# language switch #}
 {% if inTR %}
 
-  {# TR -> EN #}
+  {# tr -> en #}
   {% if url == "/tr/" %}
     {% set switchUrl = "/" %}
   {% elif url == "/tr/texts/" %}
@@ -41,12 +41,12 @@
   {% elif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
 
-  {# TR plastics book/chapter pages -> EN equivalents #}
-  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
+  {# tr plastics pages -> en equivalents #}
+  {% elif url.indexOf("/mikroplastikler/") != -1 %}
     {% set switchUrl = "/texts/plastics-in-my-flesh/microplastics/" %}
-  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/makroplastikler/") %}
+  {% elif url.indexOf("/makroplastikler/") != -1 %}
     {% set switchUrl = "/texts/plastics-in-my-flesh/macroplastics/" %}
-  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/") %}
+  {% elif url.indexOf("/etimdeki-plastikler/") != -1 %}
     {% set switchUrl = "/texts/plastics-in-my-flesh/" %}
 
   {% else %}
@@ -55,7 +55,7 @@
 
 {% else %}
 
-  {# EN -> TR #}
+  {# en -> tr #}
   {% if url == "/" %}
     {% set switchUrl = "/tr/" %}
   {% elif url == "/texts/" %}
@@ -63,15 +63,15 @@
   {% elif url == "/about/" %}
     {% set switchUrl = "/tr/hakkinda/" %}
 
-  {# EN plastics book/chapter + poem pages -> TR chapter index pages #}
-  {% elif url.startsWith("/texts/plastics-in-my-flesh/microplastics/") %}
+  {# en plastics chapter + poem pages -> tr chapter index pages #}
+  {% elif url.indexOf("/microplastics/") != -1 %}
     {% set switchUrl = "/tr/texts/etimdeki-plastikler/mikroplastikler/" %}
-  {% elif url.startsWith("/texts/plastics-in-my-flesh/macroplastics/") %}
+  {% elif url.indexOf("/macroplastics/") != -1 %}
     {% set switchUrl = "/tr/texts/etimdeki-plastikler/makroplastikler/" %}
-  {% elif url.startsWith("/texts/plastics-in-my-flesh/") %}
+  {% elif url.indexOf("/plastics-in-my-flesh/") != -1 %}
     {% set switchUrl = "/tr/texts/etimdeki-plastikler/" %}
 
-  {# any other /texts/... falls back to TR texts list #}
+  {# any other /texts/... falls back to tr texts list #}
   {% elif url.startsWith("/texts/") %}
     {% set switchUrl = "/tr/texts/" %}
 
