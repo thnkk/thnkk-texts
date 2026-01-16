@@ -1,0 +1,21 @@
+---
+pagination:
+  data: collections.microplastics
+  size: 1
+  alias: poem
+permalink: "/tr/texts/etimdeki-plastikler/mikroplastikler/{{ poem.fileSlug }}/"
+layout: layouts/base.njk
+---
+
+<article class="poem">
+  <header class="poem-header">
+    <h1 class="poem-title">{{ poem.data.title }}</h1>
+    {% if poem.date %}
+      <div class="poem-meta">{{ poem.date | readableDate }}</div>
+    {% endif %}
+  </header>
+
+  <div class="poem-body">
+    {{ poem.templateContent | safe }}
+  </div>
+</article>
