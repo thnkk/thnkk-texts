@@ -41,14 +41,27 @@
   {% elif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
 
-  {# tr plastics pages -> en equivalents #}
-  {% elif url.indexOf("/mikroplastikler/") != -1 %}
-    {% set switchUrl = "/texts/plastics-in-my-flesh/microplastics/" %}
-  {% elif url.indexOf("/makroplastikler/") != -1 %}
-    {% set switchUrl = "/texts/plastics-in-my-flesh/macroplastics/" %}
-  {% elif url.indexOf("/etimdeki-plastikler/") != -1 %}
+  {# TR micro: chapter index OR poem page #}
+  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
+    {% if url == "/tr/texts/etimdeki-plastikler/mikroplastikler/" %}
+      {% set switchUrl = "/texts/plastics-in-my-flesh/microplastics/" %}
+    {% else %}
+      {% set switchUrl = url | replace("/tr/texts/etimdeki-plastikler/mikroplastikler/", "/texts/plastics-in-my-flesh/microplastics/") %}
+    {% endif %}
+
+  {# TR macro: chapter index OR poem page #}
+  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/makroplastikler/") %}
+    {% if url == "/tr/texts/etimdeki-plastikler/makroplastikler/" %}
+      {% set switchUrl = "/texts/plastics-in-my-flesh/macroplastics/" %}
+    {% else %}
+      {% set switchUrl = url | replace("/tr/texts/etimdeki-plastikler/makroplastikler/", "/texts/plastics-in-my-flesh/macroplastics/") %}
+    {% endif %}
+
+  {# TR book index #}
+  {% elif url == "/tr/texts/etimdeki-plastikler/" %}
     {% set switchUrl = "/texts/plastics-in-my-flesh/" %}
 
+  {# fallback #}
   {% else %}
     {% set switchUrl = "/" %}
   {% endif %}
@@ -63,18 +76,31 @@
   {% elif url == "/about/" %}
     {% set switchUrl = "/tr/hakkinda/" %}
 
-  {# en plastics chapter + poem pages -> tr chapter index pages #}
-  {% elif url.indexOf("/microplastics/") != -1 %}
-    {% set switchUrl = "/tr/texts/etimdeki-plastikler/mikroplastikler/" %}
-  {% elif url.indexOf("/macroplastics/") != -1 %}
-    {% set switchUrl = "/tr/texts/etimdeki-plastikler/makroplastikler/" %}
-  {% elif url.indexOf("/plastics-in-my-flesh/") != -1 %}
+  {# EN micro: chapter index OR poem page #}
+  {% elif url.startsWith("/texts/plastics-in-my-flesh/microplastics/") %}
+    {% if url == "/texts/plastics-in-my-flesh/microplastics/" %}
+      {% set switchUrl = "/tr/texts/etimdeki-plastikler/mikroplastikler/" %}
+    {% else %}
+      {% set switchUrl = url | replace("/texts/plastics-in-my-flesh/microplastics/", "/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
+    {% endif %}
+
+  {# EN macro: chapter index OR poem page #}
+  {% elif url.startsWith("/texts/plastics-in-my-flesh/macroplastics/") %}
+    {% if url == "/texts/plastics-in-my-flesh/macroplastics/" %}
+      {% set switchUrl = "/tr/texts/etimdeki-plastikler/makroplastikler/" %}
+    {% else %}
+      {% set switchUrl = url | replace("/texts/plastics-in-my-flesh/macroplastics/", "/tr/texts/etimdeki-plastikler/makroplastikler/") %}
+    {% endif %}
+    
+  {# EN book index #}
+  {% elif url == "/texts/plastics-in-my-flesh/" %}
     {% set switchUrl = "/tr/texts/etimdeki-plastikler/" %}
 
   {# any other /texts/... falls back to tr texts list #}
   {% elif url.startsWith("/texts/") %}
     {% set switchUrl = "/tr/texts/" %}
 
+  {# fallback #}
   {% else %}
     {% set switchUrl = "/tr/" %}
   {% endif %}
