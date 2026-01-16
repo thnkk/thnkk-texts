@@ -3,10 +3,11 @@ layout: layouts/base.njk
 ---
 <article class="poem">
   <header class="poem-header">
-   {% set poemDate = page.date %}
-{% if poemDate %}
-  <div class="poem-meta">{{ poemDate | readableDate }}</div>
-{% endif %}
+    <h1 class="poem-title">{{ title }}</h1>
+    {% set poemDate = page.date %}
+    {% if poemDate %}
+      <div class="poem-meta">{{ poemDate | readableDate }}</div>
+    {% endif %}
   </header>
 
   <div class="poem-body">
