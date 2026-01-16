@@ -30,29 +30,55 @@
   {% set footer_thanks = "thank you!" %}
 {% endif %}
 
-{# language switch (poem pages exist only under /texts/, so tr goes to /tr/texts/) #}
+{# language switch #}
 {% if inTR %}
+
+  {# TR -> EN #}
   {% if url == "/tr/" %}
     {% set switchUrl = "/" %}
   {% elif url == "/tr/texts/" %}
     {% set switchUrl = "/texts/" %}
   {% elif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
+
+  {# TR plastics book/chapter pages -> EN equivalents #}
+  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
+    {% set switchUrl = "/texts/plastics-in-my-flesh/microplastics/" %}
+  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/makroplastikler/") %}
+    {% set switchUrl = "/texts/plastics-in-my-flesh/macroplastics/" %}
+  {% elif url.startsWith("/tr/texts/etimdeki-plastikler/") %}
+    {% set switchUrl = "/texts/plastics-in-my-flesh/" %}
+
   {% else %}
     {% set switchUrl = "/" %}
   {% endif %}
+
 {% else %}
+
+  {# EN -> TR #}
   {% if url == "/" %}
     {% set switchUrl = "/tr/" %}
   {% elif url == "/texts/" %}
     {% set switchUrl = "/tr/texts/" %}
-  {% elif url.startsWith("/texts/") %}
-    {% set switchUrl = "/tr/texts/" %}
   {% elif url == "/about/" %}
     {% set switchUrl = "/tr/hakkinda/" %}
+
+  {# EN plastics book/chapter + poem pages -> TR chapter index pages #}
+  {% elif url.startsWith("/texts/plastics-in-my-flesh/microplastics/") %}
+    {% set switchUrl = "/tr/texts/etimdeki-plastikler/mikroplastikler/" %}
+  {% elif url.startsWith("/texts/plastics-in-my-flesh/macroplastics/") %}
+    {% set switchUrl = "/tr/texts/etimdeki-plastikler/makroplastikler/" %}
+  {% elif url.startsWith("/texts/plastics-in-my-flesh/") %}
+    {% set switchUrl = "/tr/texts/etimdeki-plastikler/" %}
+
+  {# any other /texts/... falls back to TR texts list #}
+  {% elif url.startsWith("/texts/") %}
+    {% set switchUrl = "/tr/texts/" %}
+
   {% else %}
     {% set switchUrl = "/tr/" %}
   {% endif %}
+
 {% endif %}
 
 <html lang="{{ lang }}">
@@ -84,4 +110,3 @@
     </footer>
   </body>
 </html>
-
