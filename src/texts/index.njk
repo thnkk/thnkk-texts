@@ -3,18 +3,11 @@ layout: layouts/page.njk
 title: texts
 ---
 
-<ul>
-  <li><a href="/texts/plastics-in-my-flesh/">plastics in my flesh</a></li>
+<ul class="texts-list">
+  <li>
+    <div class="text-row">
+      <a href="/texts/plastics-in-my-flesh/">plastics in my flesh</a>
+      <span class="text-date">poem-ish</span>
+    </div>
+  </li>
 </ul>
-
-{# optional: keep your old fragments list below if you want #}
-{# 
-{% if collections.texts and collections.texts.length %}
-  <hr />
-  <ul>
-    {% for post in collections.texts | reverse %}
-      <li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-    {% endfor %}
-  </ul>
-{% endif %}
-#}
