@@ -1,26 +1,16 @@
----
-layout: layouts/page.njk
-title: what do you say?
----
+<form id="contactForm" method="post" action="/api/contact">
+  <label>name *</label>
+  <input name="name" required />
 
-<form data-contact-form class="contact-form">
-  <label>
-    name *
-    <input name="name" required />
-  </label>
+  <label>e-mail *</label>
+  <input name="email" type="email" required />
 
-  <label>
-    e-mail *
-    <input name="email" type="email" required />
-  </label>
-
-  <label>
-    message *
-    <textarea name="message" rows="6" required></textarea>
-  </label>
+  <label>message *</label>
+  <textarea name="message" required></textarea>
 
   <button type="submit">send</button>
-  <p data-contact-status></p>
+
+  <p id="contactStatus" aria-live="polite"></p>
 </form>
 
-<script src="/js/contact.js"></script>
+<script src="/js/contact.js" defer></script>
