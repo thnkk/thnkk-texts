@@ -5,6 +5,10 @@ title: makroplastikler
 
 <ul>
   {% for post in collections.macroplastics | reverse %}
-    <li><a href="{{ post.url }}">{{ post.data.title }}</a> <span class="date">{{ post.date | isoDate }}</span></li>
+    {% set trUrl = post.url | replace("/texts/plastics-in-my-flesh/macroplastics/", "/tr/texts/etimdeki-plastikler/makroplastikler/") %}
+    <li>
+      <a href="{{ trUrl }}">{{ post.data.title }}</a>
+      <span class="date">{{ post.date | isoDate }}</span>
+    </li>
   {% endfor %}
 </ul>
