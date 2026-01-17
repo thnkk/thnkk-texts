@@ -1,40 +1,43 @@
-(() => {
-  const form = document.getElementById("contactForm");
+(function () {
+  const form = document.querySelector("form[data-contact-form]");
   if (!form) return;
 
-  const statusEl = document.getElementById("contactStatus");
+  const statusEl = document.querySelector("[data-contact-status]");
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const fd = new FormData(form);
-    const payload = {
-      name: String(fd.get("name") || "").trim(),
-      email: String(fd.get("email") || "").trim(),
-      message: String(fd.get("message") || "").trim(),
-    };
+    const name = form.querySelector('[name="name"]').value.trim();
+    const email = form.querySelector('[name="email"]').value.trim();
+    const message = form.querySelector('[name="message"]').value.trim();
 
-    if (statusEl) statusEl.textContent = "sending…";
+    if (!name || !email || !message) {
+      if (statusEl) statusEl.textContent = "please fill all fields.";
+      return;
+    }
+
+    if (statusEl) statusEl.textContent = "sending...";
 
     try {
-      const res = await fetch("/api/contact", {
+      const resp = await fetch("/api/contact", {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ name, email, message })
       });
 
-      const json = await res.json().catch(() => ({}));
+      const data = await resp.json().catch(() => ({}));
 
-      if (res.ok && json.ok) {
-        form.reset();
-        if (statusEl) statusEl.textContent = "sent.";
-      } else {
-        if (statusEl) statusEl.textContent = "couldn’t send. try again.";
-        console.error("contact error:", json);
+      if (!resp.ok || !data.ok) {
+        if (statusEl) statusEl.textContent = "failed to send. try again.";
+        console.log("contact error:", resp.status, data);
+        return;
       }
+
+      if (statusEl) statusEl.textContent = "sent. thank you!";
+      form.reset();
     } catch (err) {
-      if (statusEl) statusEl.textContent = "network error. try again.";
-      console.error(err);
+      if (statusEl) statusEl.textContent = "failed to send. try again.";
+      console.log("contact exception:", err);
     }
   });
 })();
