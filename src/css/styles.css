@@ -169,6 +169,46 @@ button {
 .sep {
   opacity: 0.5;
 }
+.contact-form {
+  max-width: 520px;
+}
+
+.contact-form label {
+  display: block;
+  margin: 0.9rem 0 0.35rem;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  font: inherit;
+  padding: 10px 12px;
+  border: 1px solid rgba(0,0,0,0.2);
+  border-radius: 6px;
+}
+
+.contact-form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.contact-form button {
+  margin-top: 0.9rem;
+  font: inherit;
+  padding: 8px 12px;
+  border: 1px solid rgba(0,0,0,0.25);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.contact-status {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
 
 @media (max-width: 560px) {
   .site-header {
