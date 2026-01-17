@@ -1,21 +1,23 @@
-<form id="contactForm" method="post" action="/api/contact">
-  <label>name *</label>
-  <input name="name" required />
+---
+layout: layouts/page.njk
+title: what do you say?
+permalink: /contact/
+---
 
-<form class="contact-form" data-contact-form>
-...
-<p class="contact-status" data-contact-status></p>
-</form>
+<form class="contact-form" id="contactForm" method="post" action="/api/contact">
+  <label for="name">name *</label>
+  <input id="name" name="name" required autocomplete="name" />
 
-  <label>e-mail *</label>
-  <input name="email" type="email" required />
+  <label for="email">e-mail *</label>
+  <input id="email" name="email" type="email" required autocomplete="email" />
 
-  <label>message *</label>
-  <textarea name="message" required></textarea>
+  <label for="message">message *</label>
+  <textarea id="message" name="message" required rows="7"></textarea>
+
+  <!-- honeypot (bots fill this). Humans leave it empty -->
+  <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
 
   <button type="submit">send</button>
 
-  <p id="contactStatus" aria-live="polite"></p>
+  <p class="contact-status" id="contactStatus" aria-live="polite"></p>
 </form>
-
-<script src="/js/contact.js" defer></script>
