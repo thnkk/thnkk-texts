@@ -2,11 +2,9 @@
   "name": "thnkk-text-archive",
   "private": true,
   "type": "module",
-  "scripts": {
-    "build": "eleventy",
-    "serve": "eleventy --serve",
-    "dev": "eleventy --serve --watch"
-  },
+ "scripts": {
+  "build": "npx @11ty/eleventy"
+}
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
     "luxon": "^3.5.0",
