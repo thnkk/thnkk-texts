@@ -1,8 +1,9 @@
 {
   "name": "thnkk-texts",
-  "compatibility_date": "2026-01-16",
   "main": "worker/index.js",
+  "compatibility_date": "2026-01-16",
   "assets": {
-    "directory": "./_site"
+    "directory": "./_site",
+    "binding": "ASSETS"
   }
 }
