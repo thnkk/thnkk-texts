@@ -48,6 +48,8 @@
     {% set switchUrl = "/texts/" %}
   {% elif url == "/tr/hakkinda/" %}
     {% set switchUrl = "/about/" %}
+  {% elif url == "/tr/ne-diyorsun/" %}
+    {% set switchUrl = "/contact/" %}
 
   {# TR plastics book + chapters (+ any deeper path) -> EN equivalents #}
   {% elif url.startsWith("/tr/texts/etimdeki-plastikler/mikroplastikler/") %}
@@ -73,6 +75,8 @@
     {% set switchUrl = "/tr/texts/" %}
   {% elif url == "/about/" %}
     {% set switchUrl = "/tr/hakkinda/" %}
+  {% elif url == "/contact/" %}
+    {% set switchUrl = "/tr/ne-diyorsun/" %}
 
   {# EN plastics book + chapters + poem pages -> TR chapter index pages #}
   {% elif url.startsWith("/texts/plastics-in-my-flesh/microplastics/") %}
