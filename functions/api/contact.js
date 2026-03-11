@@ -107,15 +107,20 @@ export async function onRequest(context) {
     .filter(Boolean)
     .join("");
 
-  await sendMail({
-    apiKey: resendApiKey,
-    to: toEmail,
-    from: fromEmail,
-    replyTo: email,
-    subject,
-    text,
-    html
-  });
+  try {
+    await sendMail({
+      apiKey: resendApiKey,
+      to: toEmail,
+      from: fromEmail,
+      replyTo: email,
+      subject,
+      text,
+      html
+    });
+  } catch (err) {
+    console.error("sendMail failed:", err.message);
+    return json({ ok: false, error: "email send failed", detail: err.message }, 502);
+  }
 
   return json({ ok: true }, 200);
 }
