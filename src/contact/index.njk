@@ -4,7 +4,7 @@ title: what do you say?
 permalink: /contact/
 ---
 
-<form class="contact-form" id="contactForm" method="post" action="/api/contact">
+<form class="contact-form" data-contact-form method="post" action="/api/contact">
   <label for="name">name *</label>
   <input id="name" name="name" required autocomplete="name" />
 
@@ -14,10 +14,10 @@ permalink: /contact/
   <label for="message">message *</label>
   <textarea id="message" name="message" required rows="7"></textarea>
 
-  <!-- honeypot (bots fill this). Humans leave it empty -->
-  <input name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true" />
+  <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
   <button type="submit">send</button>
-
-  <p class="contact-status" id="contactStatus" aria-live="polite"></p>
+  <p class="contact-status" data-contact-status aria-live="polite"></p>
 </form>
+
+<script defer src="/js/contact.js"></script>

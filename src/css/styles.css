@@ -20,6 +20,8 @@ a {
   text-underline-offset: 3px;
 }
 
+/* ── Layout ────────────────────────────────────────── */
+
 .site-header, .site-footer {
   max-width: var(--maxw);
   margin: 0 auto;
@@ -34,50 +36,6 @@ a {
   font-weight: 700;
   text-decoration: none;
 }
-.contact-form {
-  margin-top: 1rem;
-}
-
-.form-field {
-  margin: 0 0 1rem 0;
-}
-
-label {
-  display: block;
-  margin-bottom: 0.35rem;
-  opacity: 0.8;
-}
-
-input, textarea, button {
-  font: inherit;
-}
-
-input, textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid rgba(0,0,0,0.2);
-  background: transparent;
-}
-
-button {
-  padding: 0.55rem 0.9rem;
-  border: 1px solid rgba(0,0,0,0.2);
-  background: transparent;
-  cursor: pointer;
-}
-
-.contact-status {
-  margin-top: 0.75rem;
-  opacity: 0.75;
-}
-
-.hp {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-}
 
 .site-nav {
   display: flex;
@@ -91,38 +49,23 @@ button {
   padding: 0 var(--pad) var(--pad) var(--pad);
 }
 
-.page h1, .poem-title {
-  font-size: 2rem;
-  margin: 1.4rem 0 0.6rem 0;
-}
-
-/* subtitles under book titles */
-.page-subtitle {
-  margin: 0.5rem 0 1.25rem 0;
-  opacity: 0.75;
-}
-
-.poem-meta {
+.site-footer {
   font-size: 0.95rem;
-  margin-top: 0.5rem;
+  opacity: 0.75;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.site-copyright {
   opacity: 0.7;
+  font-size: 0.95rem;
 }
 
-.poem-body {
-  font-size: 1.08rem;
-  line-height: 1.9;
-}
+.sep { opacity: 0.5; }
 
-/* stanzas are <p>, line breaks are <br> (with markdown-it breaks: true) */
-.poem-body p {
-  margin: 0 0 1.6rem 0;
-}
+/* ── Texts list ────────────────────────────────────── */
 
-.poem-body p:last-child {
-  margin-bottom: 0;
-}
-
-/* chapter/book listing */
 .texts-list {
   list-style: none;
   padding: 0;
@@ -152,24 +95,37 @@ button {
   white-space: nowrap;
 }
 
-/* footer */
-.site-footer {
-  font-size: 0.95rem;
+/* ── Page & poem ───────────────────────────────────── */
+
+.page h1, .poem-title {
+  font-size: 2rem;
+  margin: 1.4rem 0 0.6rem 0;
+}
+
+.page-subtitle {
+  margin: 0.5rem 0 1.25rem 0;
   opacity: 0.75;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 6px;
 }
 
-.site-copyright {
-  opacity: 0.7;
+.poem-meta {
   font-size: 0.95rem;
+  margin-top: 0.5rem;
+  opacity: 0.7;
 }
 
-.sep {
-  opacity: 0.5;
+.poem-body {
+  font-size: 1.08rem;
+  line-height: 1.9;
 }
+
+/* stanzas are <p>, line breaks are <br> (markdown-it breaks: true) */
+.poem-body p { margin: 0 0 1.6rem 0; }
+.poem-body p:last-child { margin-bottom: 0; }
+
+/* ── Contact form ──────────────────────────────────── */
+
 .contact-form {
+  margin-top: 1rem;
   max-width: 520px;
 }
 
@@ -181,12 +137,19 @@ button {
 }
 
 .contact-form input,
+.contact-form textarea,
+.contact-form button {
+  font: inherit;
+}
+
+.contact-form input,
 .contact-form textarea {
   width: 100%;
-  font: inherit;
+  box-sizing: border-box;
   padding: 10px 12px;
   border: 1px solid rgba(0,0,0,0.2);
   border-radius: 6px;
+  background: transparent;
 }
 
 .contact-form textarea {
@@ -196,7 +159,6 @@ button {
 
 .contact-form button {
   margin-top: 0.9rem;
-  font: inherit;
   padding: 8px 12px;
   border: 1px solid rgba(0,0,0,0.25);
   border-radius: 6px;
@@ -209,6 +171,16 @@ button {
   font-size: 0.95rem;
   opacity: 0.8;
 }
+
+/* honeypot */
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+/* ── Responsive ────────────────────────────────────── */
 
 @media (max-width: 560px) {
   .site-header {
